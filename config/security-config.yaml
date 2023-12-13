@@ -103,6 +103,9 @@ iamPasswordPolicy:
 awsConfig:
   enableConfigurationRecorder: true
   enableDeliveryChannel: true
+  aggregation:
+    enable: true
+    delegatedAdminAccount: Audit
   ruleSets:
     - deploymentTargets:
       ## GLOBAL Section for config rules across all OUs + Management Account
