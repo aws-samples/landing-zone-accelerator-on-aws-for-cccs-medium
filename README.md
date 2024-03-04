@@ -18,6 +18,7 @@ Customers are encouraged to work with their local AWS Account Teams to learn mor
 
 -  [Configuration files and installation instructions](./install.md)
 -  [Instructions for version updates](./update-instructions.md)
+-  [FAQ](./documentation/FAQ.md)
 
 
 [sensitive]: https://www.canada.ca/en/government/system/digital-government/modern-emerging-technologies/cloud-services/government-canada-security-control-profile-cloud-based-it-services.html#toc4
