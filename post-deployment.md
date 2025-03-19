@@ -61,6 +61,7 @@ __Note__: The sample below is in standard JSON format, not DynamoDB JSON. When a
     "id": "App1",
     "targetAlbDnsName": "internal-Core-mydevacct1-alb-123456789.ca-central-1.elb.amazonaws.com",
     "targetGroupDestinationPort": 443,
+    "healthCheckPath": "/",
     "targetGroupProtocol": "HTTPS",
     "vpcId": "vpc-0a6f44a80514daaaf",
     "rule": {
@@ -81,6 +82,7 @@ __Note__: The sample below is in standard JSON format, not DynamoDB JSON. When a
 - `paths` and `hosts` are both optional, but one of the two must be supplied
 - `priority` must be unique and is used to order the listener rules. Priorities should be spaced at least 40 apart to allow for easy insertion of new applications and forwarder rules.
 - the provided `targetAlbDnsName` must resolve to addresses within a [supported](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html) IP address space.
+- `healthCheckPath` optional (defaulting to "/").
 
 ### Troubleshooting ALB forwarding
 For tips on troubleshooting issues with ALB forwarding rules see the [FAQ about Application Load Balancers Forwarding](./documentation/FAQ.md#Application-Load-Balancers-Forwarding)
