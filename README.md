@@ -14,8 +14,6 @@ The sample config files define a log retention period of 2 years based on [guida
 
 Customers are encouraged to work with their local AWS Account Teams to learn more about customizing this configuration, to learn more about the CCCS-Medium reference architecture, and the Landing Zone Accelerator on AWS solution.
 
-**NOTE: The initial release of the CCCS-Medium LZA sample configuration files included as part of LZA v1.3 do not yet fully automate the delivery of this architecture. This will be resolved in subsequent LZA releases.**
-
 -  [Configuration files and installation instructions](./install.md)
 -  [Instructions for version updates](./update-instructions.md)
 -  [FAQ](./documentation/FAQ.md)
