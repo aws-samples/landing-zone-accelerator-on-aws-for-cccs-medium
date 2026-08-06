@@ -10,10 +10,15 @@
         "cloudtrail:StopLogging",
         "cloudtrail:UpdateTrail"
       ],
-      "Resource": ["arn:${PARTITION}:cloudtrail:*:*:trail/${ACCELERATOR_PREFIX}*"],
+      "Resource": [
+        "arn:${PARTITION}:cloudtrail:*:*:trail/${ACCELERATOR_PREFIX}*"
+      ],
       "Condition": {
         "ArnNotLike": {
-          "aws:PrincipalARN": ["arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*"]
+          "aws:PrincipalARN": [
+            "arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*",
+            "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"
+          ]
         }
       }
     },
@@ -36,7 +41,10 @@
       "Resource": ["*"],
       "Condition": {
         "ArnNotLike": {
-          "aws:PrincipalARN": ["arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*", "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"]
+          "aws:PrincipalARN": [
+            "arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*",
+            "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"
+          ]
         }
       }
     },
@@ -53,40 +61,52 @@
       "Resource": ["arn:${PARTITION}:events:*:*:rule/${ACCELERATOR_PREFIX}*"],
       "Condition": {
         "ArnNotLike": {
-          "aws:PrincipalARN": ["arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*"]
+          "aws:PrincipalARN": [
+            "arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*",
+            "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"
+          ]
         }
       }
     },
     {
       "Sid": "RUL",
       "Effect": "Deny",
-      "Action": ["config:PutConfigRule", "config:DeleteConfigRule", "config:DeleteEvaluationResults", "config:UntagResource"],
+      "Action": [
+        "config:PutConfigRule",
+        "config:DeleteConfigRule",
+        "config:DeleteEvaluationResults",
+        "config:UntagResource"
+      ],
       "Resource": "*",
       "Condition": {
         "StringEquals": {
-					"aws:ResourceTag/Accelerator": "${ACCELERATOR_PREFIX}"
-				},
+          "aws:ResourceTag/Accelerator": "${ACCELERATOR_PREFIX}"
+        },
         "ArnNotLike": {
-          "aws:PrincipalARN": ["arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*", "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"]
+          "aws:PrincipalARN": [
+            "arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*",
+            "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"
+          ]
         }
       }
     },
-		{
-			"Sid": "RULTAG",
-			"Effect": "Deny",
-			"Action": [
-				"config:TagResource"
-			],
-			"Resource": "*",
-			"Condition": {
-				"StringEquals": {
-					"aws:RequestTag/Accelerator": "${ACCELERATOR_PREFIX}"
-				},
-				"ArnNotLike": {
-          "aws:PrincipalARN": ["arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*", "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"]
+    {
+      "Sid": "RULTAG",
+      "Effect": "Deny",
+      "Action": ["config:TagResource"],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestTag/Accelerator": "${ACCELERATOR_PREFIX}"
+        },
+        "ArnNotLike": {
+          "aws:PrincipalARN": [
+            "arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*",
+            "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"
+          ]
         }
-			}
-		},
+      }
+    },
     {
       "Effect": "Deny",
       "Action": [
@@ -100,7 +120,10 @@
       "Resource": "*",
       "Condition": {
         "ArnNotLike": {
-          "aws:PrincipalARN": ["arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*"]
+          "aws:PrincipalARN": [
+            "arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*",
+            "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"
+          ]
         },
         "ForAnyValue:StringLike": {
           "kms:ResourceAliases": "alias/accelerator*"
@@ -110,11 +133,19 @@
     {
       "Sid": "IAM",
       "Effect": "Deny",
-      "Action": ["iam:CreatePolicy", "iam:DeletePolic*", "iam:SetDefaultPolicyVersion", "iam:CreatePolicyVersion"],
+      "Action": [
+        "iam:CreatePolicy",
+        "iam:DeletePolic*",
+        "iam:SetDefaultPolicyVersion",
+        "iam:CreatePolicyVersion"
+      ],
       "Resource": "arn:${PARTITION}:iam::*:policy/${ACCELERATOR_PREFIX}*",
       "Condition": {
         "ArnNotLike": {
-          "aws:PrincipalARN": ["arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*"]
+          "aws:PrincipalARN": [
+            "arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*",
+            "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"
+          ]
         }
       }
     },
@@ -134,7 +165,10 @@
           "aws:ResourceTag/Accelerator": "${ACCELERATOR_PREFIX}"
         },
         "ArnNotLike": {
-          "aws:PrincipalArn": ["arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*"]
+          "aws:PrincipalArn": [
+            "arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*",
+            "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"
+          ]
         }
       }
     },
@@ -199,7 +233,10 @@
       "Resource": "*",
       "Condition": {
         "ArnNotLike": {
-          "aws:PrincipalARN": ["arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*"]
+          "aws:PrincipalARN": [
+            "arn:${PARTITION}:iam::*:role/${ACCELERATOR_PREFIX}*",
+            "arn:${PARTITION}:iam::*:role/${MANAGEMENT_ACCOUNT_ACCESS_ROLE}"
+          ]
         }
       }
     }
