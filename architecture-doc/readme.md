@@ -535,6 +535,8 @@ Guardrail1
 | Policy Statement ID (SID) | Description                                                                                                                                                                    |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `ALM`                     | Prevents deletion and modification of protected cloudwatch alarms which alert on significant control plane events                                                              |
+| `BDR1`                    | Prevents setting the Amazon Bedrock account data retention mode to any value other than `none` (zero data retention)                                                           |
+| `BDR2`                    | Prevents setting a data retention mode other than `none` on the Amazon Bedrock Mantle endpoint, at either account or project scope                                             |
 | `CFN`                     | Prevents creation, deletion or modification of any CloudFormation stacks deployed by the automation tooling                                                                    |
 | `LAM`                     | Prevents the creation, deletion and modification of any Lambda functions deployed by the automation tooling                                                                    |
 | `LOG`                     | Prevents the deletion and modification of CloudWatch Log groups account subscription filters and VPC flow logs                                                                 |
