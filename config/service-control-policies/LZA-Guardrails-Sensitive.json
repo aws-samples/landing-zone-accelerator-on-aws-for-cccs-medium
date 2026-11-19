@@ -241,6 +241,7 @@
         "shield:*",
         "sts:*",
         "support:*",
+        "support-console:*",        
         "trustedadvisor:*",
         "waf-regional:*",
         "waf:*",
